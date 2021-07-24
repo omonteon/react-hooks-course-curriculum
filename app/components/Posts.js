@@ -8,26 +8,24 @@ function postsReducer(state, action) {
   switch (action.type) {
     case 'FETCH_POSTS_REQUEST':
       return {
-        ...state,
+        posts: null,
         error: null,
         loading: true,
       };
     case 'FETCH_POSTS_SUCCESS':
       return {
-        ...state,
         posts: action.posts,
         error: null,
         loading: false,
       };
     case 'FETCH_POSTS_FAILURE':
       return {
-        ...state,
-        posts: [],
+        posts: state.posts,
         error: action.message,
         loading: false,
       };
     default:
-      break;
+      throw new Error(`That action type is not supported.`);
   }
 }
 

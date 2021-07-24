@@ -65,7 +65,7 @@ export default function User({ location }) {
       .catch(({ message }) =>
         dispatch({ type: actions.FETCH_USER_FAILURE, message })
       );
-  }, []);
+  }, [id]);
 
   const { user, posts, loadingUser, loadingPosts, error } = state;
 

@@ -8,7 +8,7 @@ import Comment from './Comment';
 
 const actions = {
   FETCH_POST_SUCCESS: 'FETCH_POST_SUCCESS',
-  FETCH_POST_FAILURE: 'FETCH_POST_FAILURE',
+  FETCH_FAILURE: 'FETCH_FAILURE',
   FETCH_COMMENTS_SUCCESS: 'FETCH_COMMENTS_SUCCESS',
 };
 
@@ -28,7 +28,7 @@ function postReducer(state, action) {
         loadingComments: false,
         error: null,
       };
-    case actions.FETCH_POST_FAILURE:
+    case actions.FETCH_FAILURE:
       return {
         ...state,
         error: action.message,
@@ -64,9 +64,9 @@ export default function Post({ location }) {
         dispatch({ type: actions.FETCH_COMMENTS_SUCCESS, comments })
       )
       .catch(({ message }) =>
-        dispatch({ type: actions.FETCH_POST_FAILURE, message })
+        dispatch({ type: actions.FETCH_FAILURE, message })
       );
-  }, []);
+  }, [id]);
 
   const { post, loadingPost, comments, loadingComments, error } = state;
 
